@@ -21,7 +21,13 @@ const loginStudentHandler = async (req: Request, res: Response) => {
       role: Role.STUDENT,
     }, process.env.JWT_SECRET as string);
 
-    res.json({ token });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,
+    });
+
+    res.status(200).json({ message: 'User logged in successfully' });
+
   } catch (error) {
     console.error('User login failed:', error);
     res.status(500).json({ message: 'Internal Server Error' });
