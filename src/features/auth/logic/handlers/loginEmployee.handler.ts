@@ -8,8 +8,6 @@ const loginEmployeeHandler = async (req: Request, res: Response) => {
   try {
     const { username, password } = req.body;
 
-    // Find user by email
-    // TODO: Use password
     const employee = await EmployeeModel.findOne({ username });
 
     if (!employee) {
