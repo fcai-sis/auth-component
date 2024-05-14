@@ -39,14 +39,17 @@ app.use(compression());
 
 // Enable CORS
 // https://stackoverflow.com/a/61988727/14174934
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5174",
+  credentials: true,
+}));
 
 // Parse JSON and url-encoded query
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Mount API routes
-app.use("/auth", router());
+app.use("/", router());
 
 // TODO: Custom 404 handler
 app.use((req: Request, res: Response, next: NextFunction) => {

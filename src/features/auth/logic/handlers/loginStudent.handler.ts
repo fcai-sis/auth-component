@@ -33,7 +33,10 @@ const loginStudentHandler = async (req: Request, res: Response) => {
 
   res.cookie('token', token, {
     httpOnly: true,
-    secure: true,
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+    sameSite: 'none',
+    secure: true, // TODO: Enable this in production
+    priority: 'high',
   });
 
   res.status(200).json({ message: 'User logged in successfully' });
