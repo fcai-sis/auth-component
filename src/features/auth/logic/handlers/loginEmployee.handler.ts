@@ -33,6 +33,7 @@ const loginEmployeeHandler = async (req: Request, res: Response) => {
     }, process.env.JWT_SECRET as string);
 
     res.json({ token });
+
   } catch (error) {
     console.error('User login failed:', error);
     res.status(500).json({ message: 'Internal Server Error' });
