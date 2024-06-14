@@ -39,10 +39,7 @@ app.use(compression());
 
 // Enable CORS
 // https://stackoverflow.com/a/61988727/14174934
-app.use(cors({
-  origin: "http://localhost:5174",
-  credentials: true,
-}));
+app.use(cors());
 
 // Parse JSON and url-encoded query
 app.use(express.json());
