@@ -13,7 +13,7 @@ const loginAdminHandler = async (req: Request, res: Response) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
 
-  const user = await UserModel.findById(student.userId);
+  const user = await UserModel.findById(student.user);
 
   if (!user) {
     return res.status(500).json({ message: "User not found" });
@@ -28,7 +28,7 @@ const loginAdminHandler = async (req: Request, res: Response) => {
   // Generate JWT token with user's id and role
   const token = jwt.sign(
     {
-      userId: student.userId.toString(),
+      userId: student.user.toString(),
       role: Role.ADMIN,
     },
     process.env.JWT_SECRET as string
